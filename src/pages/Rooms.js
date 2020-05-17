@@ -2,9 +2,11 @@ import React from 'react';
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
+import RoomContainer from '../components/RoomContainer';
 
 function Rooms(props) {
     return (
+        <>
         <Hero hero="roomsHero">
             <Banner title="our rooms">
                 <Link to="/" className="btn-primary">
@@ -12,6 +14,8 @@ function Rooms(props) {
           </Link>
             </Banner>
         </Hero>
+        <RoomContainer/>
+        </>
     );
 }
 
