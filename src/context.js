@@ -56,9 +56,29 @@ class RoomProvider extends Component {
         return room;
     }
 
+    handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        this.setState({
+            [name]:value
+        }, this.filterRoom)
+    }
+
+    filterRoom = () => {
+        let {rooms, type} = this.state;
+        let tempRooms = [...rooms];
+        if(type !== 'all') {
+            tempRooms = tempRooms.filter(room => room.type === type);
+        }        
+        this.setState({
+            sortedRooms: tempRooms
+        });
+    }
+
     render() {
         return (
-            <RoomContext.Provider value={{...this.state, getRoom: this.getSingleRoom}}>
+            <RoomContext.Provider value={{...this.state, getRoom: this.getSingleRoom, handleChange: this.handleChange}}>
                 {this.props.children}
             </RoomContext.Provider>
         )
